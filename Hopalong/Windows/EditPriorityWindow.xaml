@@ -1,0 +1,18 @@
+﻿<Window x:Class="Hopalong.Windows.EditPriorityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hopalong.Windows"
+        mc:Ignorable="d"
+        FontFamily="Comic Sans MS"
+        Title="Изменить приоритет"
+        Height="200" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Приоритет" FontSize="24" HorizontalAlignment="Center"/>
+            <TextBox x:Name="tbPriority"/>
+            <Button x:Name="btnSave" Content="Изменить" Click="btnSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,106 @@
+﻿<Window x:Class="Hopalong.Windows.AgentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hopalong.Windows"
+        mc:Ignorable="d"
+        FontFamily="Comic Sans MS"
+        Title="Агент" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Наименование" Grid.Row="0"/>
+        <TextBox Text="{Binding Agent.Title}" Grid.Row="0" Grid.Column="1"/>
+
+        <Label Content="Телефон" Grid.Row="1"/>
+        <TextBox Text="{Binding Agent.Phone}" Grid.Row="1" Grid.Column="1"/>
+
+        <Label Content="Email" Grid.Row="2"/>
+        <TextBox Text="{Binding Agent.Email}" Grid.Row="2" Grid.Column="1"/>
+
+        <TextBlock Text="Приоритет" Grid.Row="3" TextWrapping="Wrap"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="20"/>
+        <TextBox Text="{Binding Agent.Priority}" Grid.Row="3" Grid.Column="1"/>
+
+        <Label Content="Адрес" Grid.Row="4"/>
+        <TextBox Text="{Binding Agent.Address}" Grid.Row="4" Grid.Column="1"
+                 VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True"
+                 VerticalScrollBarVisibility="Auto"/>
+
+        <Label Content="Директор" Grid.Row="5"/>
+        <TextBox Text="{Binding Agent.DirectorName}"
+                 Grid.Row="5" Grid.Column="1" TextWrapping="Wrap"/>
+
+        <Label Content="Тип агента" Grid.Column="2" Grid.Row="0"/>
+        <ComboBox x:Name="cbWorkshop" Grid.Column="3" Grid.Row="0" 
+                  ItemsSource="{Binding AgentTypes}"
+                  SelectedItem="{Binding Agent.AgentType}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Content="ИНН" Grid.Row="1" Grid.Column="2"/>
+        <TextBox Text="{Binding Agent.INN}" Grid.Row="1" Grid.Column="3"/>
+
+        <Label Content="КПП" Grid.Row="2" Grid.Column="2"/>
+        <TextBox Text="{Binding Agent.KPP}" Grid.Row="2" Grid.Column="3"/>
+
+        <ListView x:Name="lvProductSales" ItemsSource="{Binding Agent.ProductSales}" MaxWidth="300"
+                  Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="15" SelectionChanged="lvProductSales_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Right" Margin="10 0" VerticalAlignment="Center">
+                            <Run Text="{Binding SaleDate, StringFormat=dd.MM.yyyy}"/>
+                            <Run Text="{Binding Product.Title}"/>
+                            <TextBox Text="{Binding ProductCount}" Background="#FFE9F9" Margin="0 0 0 0"
+                                     VerticalAlignment="Bottom" FontSize="10"/>
+                            <Run Text="шт"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Content="Товары" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Right"/>
+        <ComboBox x:Name="cbProducts" Grid.Column="3" Grid.Row="5" ItemsSource="{Binding Products}"
+                  IsTextSearchEnabled="False" IsEditable="True" SelectionChanged="cbProducts_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" HorizontalAlignment="Left" FontSize="20"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Image x:Name="imgLogo" Source="{Binding Agent.Logo}" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4"/>
+        <Button x:Name="btnAddImage" Content="Выбрать изображение" Grid.Row="3" Grid.Column="4"
+                VerticalAlignment="Center" Click="btnAddImage_Click" Margin="5 0"/>
+
+        <Button x:Name="btnDelete" Content="Удалить" Grid.Row="6"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDelete_Click"/>
+
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Row="6" Grid.ColumnSpan="5"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnSave_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f3a93e9ddaa146d7b43bad301b89abf8" Name="Diagram1">
+        <EntityTypeShape EntityType="HopalongModel.Agent" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.AgentPriorityHistory" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.AgentType" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.Material" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.MaterialCountHistory" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.MaterialType" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.Product" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.ProductCostHistory" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.ProductSale" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.ProductType" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.Shop" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HopalongModel.Supplier" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="HopalongModel.FK_Agent_AgentType" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_AgentPriorityHistory_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_ProductSale_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_Shop_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_Material_MaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_MaterialCountHistory_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_ProductMaterial_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_Product_ProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_ProductCostHistory_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_ProductMaterial_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.FK_ProductSale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="HopalongModel.MaterialSupplier" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

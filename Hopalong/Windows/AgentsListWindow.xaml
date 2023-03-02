@@ -1,0 +1,115 @@
+﻿<Window x:Class="Hopalong.Windows.AgentsListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hopalong.Windows"
+        mc:Ignorable="d"
+        FontFamily="Comic Sans MS"
+        Title="AgentsListWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Поиск"/>
+            <TextBox x:Name="tbSearch" Grid.Row="1" TextChanged="tbSearch_TextChanged"/>
+
+            <Label Content="Тип агента" Grid.Column="1"/>
+            <ComboBox x:Name="cbAgentType" Grid.Row="1" Grid.Column="1"
+                      ItemsSource="{Binding AgentTypes}" SelectedIndex="0"
+                      SelectionChanged="cbAgentType_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Label Content="Фильтрация" Grid.Column="2"/>
+            <ComboBox x:Name="cbSorting" Grid.Row="1" Grid.Column="2"
+                      ItemsSource="{Binding Sortings.Keys}" SelectedIndex="0"
+                      SelectionChanged="cbSorting_SelectionChanged"/>
+        </Grid>
+
+        <ListView x:Name="lvAgents" Grid.Row="1" ItemsSource="{Binding Agents}" HorizontalContentAlignment="Stretch"
+                  PreviewMouseDoubleClick="lvAgents_PreviewMouseDoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="1" Background="{Binding Color}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Width="80" Height="60" Margin="10 0">
+                                <Image.Source>
+                                    <Binding Path="Logo">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/Resources/default_picture.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+
+                            <StackPanel Grid.Column="1" Margin="5">
+                                <TextBlock FontSize="18">
+                                    <Run Text="{Binding AgentType.Title}"/>
+                                    <Run Text="|"/>
+                                    <Run Text="{Binding Title}"/>
+                                </TextBlock>
+                                <TextBlock FontSize="14">
+                                    <Run Text="{Binding YearSalesCount, Mode=OneWay}"/>
+                                    <Run Text="продаж за год"/>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Phone}" FontSize="14"/>
+                                <TextBlock FontSize="14">
+                                    <Run Text="Приоритетность:"/>
+                                    <Run Text="{Binding Priority}"/>
+                                </TextBlock>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Discount, StringFormat={}{0}%, Mode=OneWay}"
+                                       Grid.Column="2" Margin="5" FontSize="18"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnEditPriority" Content="Измненить приоритет"
+                    Click="btnEditPriority_Click"/>
+            <Button x:Name="btnNewAgent" Content="Новый агент"
+                    Grid.ColumnSpan="3" HorizontalAlignment="Center"
+                    Click="btnNewAgent_Click"/>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Text="&lt;" PreviewMouseDown="Paginator" Style="{DynamicResource Paginator}"/>
+                <StackPanel x:Name="spPages" Orientation="Horizontal"/>
+                <TextBlock Text="&gt;" PreviewMouseDown="Paginator" Style="{DynamicResource Paginator}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
