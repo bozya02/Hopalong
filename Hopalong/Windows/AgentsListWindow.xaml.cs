@@ -55,7 +55,6 @@ namespace Hopalong.Windows
             };
 
             this.DataContext = this;
-
             DataAccess.AddNewItemEvent += DataAccess_AddNewItemEvent;
             ApplyFilters();
         }
