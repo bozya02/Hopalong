@@ -55,6 +55,7 @@ namespace Hopalong.Windows
             };
 
             this.DataContext = this;
+
             DataAccess.AddNewItemEvent += DataAccess_AddNewItemEvent;
             ApplyFilters();
         }
@@ -62,6 +63,8 @@ namespace Hopalong.Windows
         private void DataAccess_AddNewItemEvent()
         {
             _agents = DataAccess.GetAgents();
+            AgentTypes[0].Agents = _agents;
+            cbAgentType.ItemsSource = AgentTypes;
             ApplyFilters();
         }
 

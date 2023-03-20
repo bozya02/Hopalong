@@ -44,7 +44,7 @@ namespace Hopalong.Windows
 
             this.DataContext = this;
 
-            if (agent.ProductSales != null)
+            if (agent.ProductSales.Count != 0)
                 btnDelete.Visibility = Visibility.Hidden;
         }
 
